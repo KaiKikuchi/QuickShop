@@ -10,6 +10,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.UUID;
 
+import cn.sollyu.spigot.Language;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.OfflinePlayer;
@@ -34,7 +35,9 @@ public class MsgUtil {
 	 */
 	public static void loadCfgMessages() {
 		// Load messages.yml
-		File messageFile = new File(plugin.getDataFolder(), "messages.yml");
+		Language.getInstance().saveAllLanguageN(plugin);
+		File messageFile = Language.getInstance().getFile(plugin.getDataFolder(), "messages.yml");
+		// File messageFile = new File(plugin.getDataFolder(), "messages.yml");
 		if (!messageFile.exists()) {
 			plugin.getLogger().info("Creating messages.yml");
 			plugin.saveResource("messages.yml", true);
