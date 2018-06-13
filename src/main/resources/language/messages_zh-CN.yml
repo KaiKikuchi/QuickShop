@@ -102,6 +102,7 @@ command:
     remove: '&e移除眼前的商店.'
     
 signs:
-  selling: '&b出售数量: &3{0}'
-  buying: '&d收购数量: &3{0}'
-  price: '每件价格: {0}'
+  header: "&c店主：{0}"
+  selling: '&2出售库存：&3{0}'
+  buying: '&d收购剩余：&3{0}'
+  price: '每件价格：{0}'

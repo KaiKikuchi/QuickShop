@@ -3,7 +3,7 @@
 // (powered by Fernflower decompiler)
 //
 
-package cn.sollyu.spigot;
+package cn.sollyu.spigot.utils;
 
 import java.io.File;
 import java.util.Collection;

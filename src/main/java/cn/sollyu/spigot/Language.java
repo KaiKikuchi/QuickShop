@@ -1,5 +1,9 @@
 package cn.sollyu.spigot;
 
+import cn.sollyu.spigot.utils.FilenameUtils;
+import org.apache.commons.lang3.LocaleUtils;
+import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
@@ -10,32 +14,47 @@ import java.net.URISyntaxException;
 import java.net.UnknownHostException;
 import java.nio.file.Paths;
 import java.security.CodeSource;
+import java.util.HashMap;
 import java.util.Locale;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
 @SuppressWarnings("WeakerAccess")
 public class Language {
+    private HashMap<String, FileConfiguration> alreadyLoadFileConfiguration = new HashMap<>();
+    private Locale locale = Locale.getDefault();
+
     private Language() {
     }
 
     private static final Language instance = new Language();
 
-    public static void main(String[] args) throws IOException, URISyntaxException {
-        //System.out.println(Language.getInstance().getFile("QuickShop", "message"));
-        //Language.getInstance().saveAllLanguage();
-    }
-
     public static Language getInstance() {
         return instance;
     }
 
+    public FileConfiguration getConfig(JavaPlugin javaPlugin, String name) {
+        return getConfig(javaPlugin, name, getLocale());
+    }
+
+    public FileConfiguration getConfig(JavaPlugin javaPlugin, String name, Locale locale) {
+        if (alreadyLoadFileConfiguration.containsKey(name)) {
+            return alreadyLoadFileConfiguration.get(name);
+        }
+        File configFile = getFile(javaPlugin.getDataFolder(), name, locale);
+        if (!configFile.exists()) {
+            return null;
+        }
+        alreadyLoadFileConfiguration.put(name, YamlConfiguration.loadConfiguration(configFile));
+        return alreadyLoadFileConfiguration.get(name);
+    }
+
     public File getFile(String parentFolder, String fileName) {
-        return getFile(new File(parentFolder), fileName, Locale.getDefault());
+        return getFile(new File(parentFolder), fileName, getLocale());
     }
 
     public File getFile(File parentFolder, String fileName) {
-        return getFile(parentFolder, fileName, Locale.getDefault());
+        return getFile(parentFolder, fileName, getLocale());
     }
 
     public File getFile(File parentFolder, String fileName, Locale locale) {
@@ -84,7 +103,13 @@ public class Language {
                     if (!languageFile.getParentFile().exists() && !languageFile.getParentFile().mkdirs()) {
                         throw new IOException("create folder error: " + languageFile.getParentFile().getAbsolutePath());
                     }
-                    javaPlugin.saveResource("language/" + languageFile.getName(), replace);
+                    if (languageFile.exists()) {
+                        if (replace) {
+                            javaPlugin.saveResource("language/" + languageFile.getName(), true);
+                        }
+                    } else {
+                        javaPlugin.saveResource("language/" + languageFile.getName(), false);
+                    }
                 }
             }
         }
@@ -115,5 +140,26 @@ public class Language {
         tr.printStackTrace(pw);
         pw.flush();
         return sw.toString();
+    }
+
+    public Locale getLocale() {
+        return locale;
+    }
+
+    public void setLocale(Locale locale) {
+        this.locale = locale;
+    }
+
+    /**
+     * 设置当前语言
+     *
+     * @param locale
+     */
+    public void setLocale(String locale) {
+        if (locale.equalsIgnoreCase("auto")) {
+            this.locale = Locale.getDefault();
+        } else {
+            this.locale = Locale.forLanguageTag(locale);
+        }
     }
 }
