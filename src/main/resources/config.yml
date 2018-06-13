@@ -1,5 +1,10 @@
 #Default config: https://github.com/KaiKikuchi/QuickShop/blob/master/src/main/resources/config.yml
 
+#language
+#support: auto, zh-CN
+#list http://www.oracle.com/technetwork/java/javase/java8locales-2095355.html
+language: zh-CN
+
 #Tax amount (decimal) - Eg, P1 buys $50 worth of stuff from P2.  Therefore, P1 loses $50, P2 gains $(1-0.05)*50, and tax-account gains $(0.05)*50.
 tax: 0.05
 
@@ -95,35 +100,3 @@ blacklist:
 #List of items with restricted prices. Format: <ItemID>;<MinPrice>;<MaxPrice>
 price-restriction:
 - Bedrock;100;200
-
-#Custom name for items. Format: <ItemID[*DataValue]>;<CustomSignName>;<CustomFullName>
-# Vanilla Material list (ItemIDs): https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/Material.html
-custom-items-name:
-- NETHER_STALK;Nether Wart;Nether Wart
-
-custom-potions-name:
-  sign:
-    format: "%variety%type"
-    variety:
-      normal: ""
-      splash: "Splash"
-      lingering: "Ling"
-  shopinfo:
-    format: "%variety %type"
-    variety:
-      normal: ""
-      splash: "Splash"
-      lingering: "Lingering"
-
-  #Custom names for potions types. Format: <PotionType>;<CustomSignName>;<CustomFullName>
-  # PotionType: https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/potion/PotionType.html
-  types:
-  - INVISIBILITY;Invis;Invisibility
-
-  #Custom names for potion effect type. Format: <PotionEffectType>;<CustomName>
-  # PotionEffect: https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/potion/PotionEffectType.html
-  effects:
-  - FIRE_RESISTANCE;Fire resistance
-  - INVISIBILITY;Invisibility
-
-  

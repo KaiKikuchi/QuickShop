@@ -17,6 +17,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.UUID;
 
+import cn.sollyu.spigot.Language;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
@@ -134,7 +135,7 @@ public class QuickShop extends JavaPlugin {
 
 	public void onEnable() {
 		NMS.init();
-		
+
 		instance = this;
 		saveDefaultConfig(); // Creates the config folder and copies config.yml
 								// (If one doesn't exist) as required.
@@ -172,9 +173,10 @@ public class QuickShop extends JavaPlugin {
 			LockListener ll = new LockListener(this);
 			getServer().getPluginManager().registerEvents(ll, this);
 		}
-		
-		if (this.getConfig().isSet("custom-items-name")) {
-			for (String s : this.getConfig().getStringList("custom-items-name")) {
+
+		//if (this.getConfig().isSet("custom-items-name")) {
+		if (Language.getInstance().getConfig(this, "item").isSet("custom-items-name")) {
+			for (String s : Language.getInstance().getConfig(this, "item").getStringList("custom-items-name")) {
 				try {
 					String[] mainVal = s.split("[;]");
 					if (mainVal.length!=3) {
@@ -215,7 +217,8 @@ public class QuickShop extends JavaPlugin {
 			}
 		}
 		
-		ConfigurationSection cPotionSection = this.getConfig().getConfigurationSection("custom-potions-name");
+		//ConfigurationSection cPotionSection = this.getConfig().getConfigurationSection("custom-potions-name");
+		ConfigurationSection cPotionSection = Language.getInstance().getConfig(this, "item").getConfigurationSection("custom-potions-name");
 		if (cPotionSection!=null) {
 			CustomPotionsName.setSignFormat(new String[]{cPotionSection.getString("sign.format"), cPotionSection.getString("sign.variety.normal"), cPotionSection.getString("sign.variety.splash"), cPotionSection.getString("sign.variety.lingering")});
 			CustomPotionsName.setShopInfoFormat(new String[]{cPotionSection.getString("shopinfo.format"), cPotionSection.getString("shopinfo.variety.normal"), cPotionSection.getString("shopinfo.variety.splash"), cPotionSection.getString("shopinfo.variety.lingering")});
@@ -461,6 +464,7 @@ public class QuickShop extends JavaPlugin {
 		this.sneakTrade = this.getConfig().getBoolean("shop.sneak-to-trade");
 		this.priceChangeRequiresFee = this.getConfig().getBoolean("shop.price-change-requires-fee");
 		this.displayItemCheckTicks = this.getConfig().getInt("shop.display-items-check-ticks");
+		Language.getInstance().setLocale(getConfig().getString("language", "auto"));
 		MsgUtil.loadCfgMessages();
 	}
 
