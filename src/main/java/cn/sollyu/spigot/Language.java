@@ -159,7 +159,7 @@ public class Language {
         if (locale.equalsIgnoreCase("auto")) {
             this.locale = Locale.getDefault();
         } else {
-            this.locale = Locale.forLanguageTag(locale);
+            this.locale = Locale.forLanguageTag(locale.replace('_', '-'));
         }
     }
 }
