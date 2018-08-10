@@ -1,5 +1,5 @@
 package org.maxgamer.quickshop.Util;
-
+/*
 import java.io.BufferedInputStream;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -27,10 +27,10 @@ import org.bukkit.potion.PotionType;
 import org.maxgamer.quickshop.QuickShop;
 import org.maxgamer.quickshop.Util.CustomPotionsName.GenericPotionData;
 import org.maxgamer.quickshop.Util.CustomPotionsName.GenericPotionData.Category;
-
-@SuppressWarnings("deprecation")
+*/
+//@SuppressWarnings("deprecation")
 public class NMS {
-	private static ArrayList<NMSDependent> nmsDependencies = new ArrayList<NMSDependent>();
+	/*private static ArrayList<NMSDependent> nmsDependencies = new ArrayList<NMSDependent>();
 	private static int nextId = 0;
 	private static NMSDependent nms;
 	
@@ -573,7 +573,7 @@ public class NMS {
 	
 	public static GenericPotionData getPotionData(ItemStack potion) {
 		return nms.getPotionData(potion);
-	}
+	}*/
 
 	/*private static void protect(Item item) {
 		try {
@@ -607,7 +607,7 @@ public class NMS {
 			e.printStackTrace();
 		}
 	}*/
-
+	/*
 	private static abstract class NMSDependent {
 		private String version;
 
@@ -632,5 +632,5 @@ public class NMS {
 		public org.bukkit.inventory.ItemStack getItemStack(byte[] paramArrayOfByte) {
 			throw new UnsupportedOperationException();
 		}
-	}
+	}*/
 }

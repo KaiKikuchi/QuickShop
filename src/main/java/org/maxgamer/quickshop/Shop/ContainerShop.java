@@ -593,7 +593,7 @@ public class ContainerShop implements Shop {
 	}
 
 	private void checkDisplay() {
-		if (plugin.display == false)
+		/*if (plugin.display == false)
 			return;
 		if (getLocation().getWorld() == null)
 			return; // not loaded
@@ -626,7 +626,7 @@ public class ContainerShop implements Shop {
 			} else if (item.getLocation().distanceSquared(dispLoc) > 1) {
 				item.teleport(dispLoc, TeleportCause.PLUGIN);
 			}
-		}
+		}*/
 	}
 	
 	public boolean checkDisplayMoved() {

@@ -14,7 +14,7 @@ public class CustomPotionsName {
 	private static String[] signFormat, shopInfoFormat;
 	
 	private CustomPotionsName() {}
-	
+	/*
 	public static String getSignName(ItemStack potionItemStack) {
 		GenericPotionData potion = NMS.getPotionData(potionItemStack);
 		if (potion==null) {
@@ -125,7 +125,7 @@ public class CustomPotionsName {
 		
 		return sb.toString();
 	}
-
+	 */
 	public static class Names {
 		private String sign, full;
 

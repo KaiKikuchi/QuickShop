@@ -133,7 +133,7 @@ public class QuickShop extends JavaPlugin {
 	}
 
 	public void onEnable() {
-		NMS.init();
+		//NMS.init();
 		
 		instance = this;
 		saveDefaultConfig(); // Creates the config folder and copies config.yml

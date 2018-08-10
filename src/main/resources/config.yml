@@ -70,7 +70,7 @@ shop:
     sneak-to-trade: false
     
     #Should we automatically create the sign for the chest?
-    auto-sign: true
+    auto-sign: false
     
     #If a player owns an unlimited shop, should they receive the cash from it or not?
     #If you buy from YOUR unlimited shop, you will NEVER be charged $$, regardless of this setting

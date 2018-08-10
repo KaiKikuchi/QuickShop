@@ -37,7 +37,7 @@ public class DisplayItem {
 	 * Spawns the dummy item on top of the shop.
 	 */
 	public void spawn() {
-		if (shop.getLocation().getWorld() == null)
+		/*if (shop.getLocation().getWorld() == null)
 			return;
 		Location dispLoc = this.getDisplayLocation();
 		this.item = shop.getLocation().getWorld().dropItem(dispLoc, this.iStack);
@@ -50,7 +50,7 @@ public class DisplayItem {
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.out.println("QuickShop version mismatch! This version of QuickShop is incompatible with this version of bukkit! Try update?");
-		}
+		}*/
 	}
 
 	/**
@@ -98,10 +98,10 @@ public class DisplayItem {
 	 * Removes the display item.
 	 */
 	public void remove() {
-		if (this.item == null)
+		/*if (this.item == null)
 			return;
 		this.item.remove();
-		this.item = null;
+		this.item = null;*/
 	}
 
 	/**
